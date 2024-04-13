@@ -1,18 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import Home from "./Home";
-import Users from "./Users";
-import Requests from "./Requests";
-import SingleUser from "./SingleUser";
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../../../Redux/userDetails/action";
 
-const Dashboard = (props) => {
-  const [toggle, setToggle] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+const Dashboard = () => {
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    async function fetchdata(){
+      console.log("data fetching in the dashboard starts...!!")
+      const data = await fetch("http://localhost:3000/users/allUser");
+      const resData = await data.json();
+      console.log("response received", resData);
+      dispatch(setUserDetails(resData.data))
+      console.log("Action is dispatched in the fetchdata function")
+    }
+    fetchdata();
+
+
+    const intervalId = setInterval(fetchdata, 10000);
+
+    // Clean up function to clear interval on component unmount
+    return () => clearInterval(intervalId);
+
+  },[dispatch])
+
+  console.log("Dashboard is runned")
   return (
     <div className="flex">
       <header className="absolute w-full md:w-72 md:min-w-72 lg:relative">
-        <Sidebar open={toggle} isAuthenticated={isAuthenticated} />
+        <Sidebar />
       </header>
       <main className="container h-full min-h-screen bg-slate-50 px-2">
         <button

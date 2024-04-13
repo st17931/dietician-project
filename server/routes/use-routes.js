@@ -13,4 +13,12 @@ router.post('/addUser',async(req,res)=>{
 
 });
 
+router.get('/allUser', async(req,res)=>{
+        const allUser = await User.find({isAdmin: false}).exec();
+        res.json({
+            success: true,
+            data:allUser
+        })
+})
+
 module.exports = router;

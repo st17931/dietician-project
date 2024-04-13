@@ -95,36 +95,11 @@ function UserDetailForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-      // const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1"); //THIS LINE IS NOT WORKING TOKEN is needed while UPDATING THE DATA
-
-      // if (!token) {
-      //   throw new Error('No token found');
-      // }
-
-      // const config = {
-      //   headers: {
-      //     'Authorization': `Bearer ${token}`,
-      //     'Content-Type': 'application/json'
-      //   }
-      // }
-      const config = {
-        withCredentials: true,
-      };
-
-    //   const response = await axios.put(
-    //     "http://localhost:5000/api/userDetails",
-    //     formData,
-    //     config,
-    //   );
-    //   console.log("User details updated:", response.data);
-    // } catch (error) {
-    //   console.error("Error updating user details:", error);
-    // }
+    
     const completeUserData = {...location.state.key, ...formData}
     console.log("complete user data is", completeUserData);
 
-    const sendUserData = await fetch("",{
+    const sendUserData = await fetch("http://localhost:3000/users/addUser",{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
@@ -132,10 +107,14 @@ function UserDetailForm() {
         body:JSON.stringify(completeUserData)
     })
 
-    if(sendUserData.success){
-      alert("user is saved to d successfully")
+    const sendUserDataJson = await sendUserData.json();
+
+    if(sendUserDataJson.success){
+      alert("user is saved to d successfully....!! Pls Login");
+      navigate('/auth/login');
     }else{
-      alert("Something went wrong");
+      alert("Something went wrong...!! Try again");
+      navigate('/auth/signup');
     }
 
     

@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { Slide } from "react-awesome-reveal";
+import { adminLoginSuccess, userLoginSuccess } from "../Redux/auth/action";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -28,31 +31,31 @@ function Login() {
       }
 
       // Send POST request to backend for login
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        credentials: "include", // Include credentials (cookies) in the request
+         // Include credentials (cookies) in the request
       });
 
-      const data = await response.json();
+      const jsonResponse = await response.json();
 
       // Handle user not registered or wrong cred
-      if (!response.ok) {
-        toast.error(data.message);
-      }
-
-      if (response.ok) {
+      if (!jsonResponse.success) {
+        toast.error(jsonResponse.message);
+      }else if (jsonResponse.success) {
         // Handle success response and store token in cookie redirect to multi-stack form
-        document.cookie = `token=${data.token}; path=/`; // Store token in a cookie named "token"
-        toast.success(
-          data.message,
-          setTimeout(() => {
-            navigate("/UserDetailForm");
-          }, 3000),
-        );
+          //jsonResponse.isAdmin ? navigate('/dashboard/admin/home') : navigate('/')
+          if(jsonResponse.isAdmin){
+            dispatch(adminLoginSuccess())
+            navigate('/dashboard/admin/home')
+          }else{
+            dispatch(userLoginSuccess());
+            navigate('/')
+          }
+      
       } else {
         // Handle error response and display error message using toast.error()
         toast.error(data.error);

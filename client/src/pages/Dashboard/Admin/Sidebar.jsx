@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function Links({ closeNavbar, isAuthenticated }) {
+function Links() {
+  
   return (
-    <>
-      {isAuthenticated ? (
+    
+      
         <>
           <div className="px-8 py-3">
             <h4 className="opacity-50 ">Analytics</h4>
 
             <NavLink
-              onClick={closeNavbar}
+              
               className="flex items-center py-2 text-lg hover:text-indigo-700"
               to="home"
             >
@@ -26,7 +27,7 @@ function Links({ closeNavbar, isAuthenticated }) {
             </NavLink>
 
             <NavLink
-              onClick={closeNavbar}
+              
               className="flex items-center py-2 text-lg hover:text-indigo-700"
               to="users"
             >
@@ -45,7 +46,7 @@ function Links({ closeNavbar, isAuthenticated }) {
           <div className="px-8 py-3">
             <h4 className="opacity-50 ">Manage</h4>
             <NavLink
-              onClick={closeNavbar}
+              
               className={"flex items-center py-2 text-lg hover:text-indigo-700"}
               to="requests"
             >
@@ -60,7 +61,7 @@ function Links({ closeNavbar, isAuthenticated }) {
               )}
             </NavLink>
             <NavLink
-              onClick={closeNavbar}
+              
               className={"flex items-center py-2 text-lg hover:text-indigo-700"}
               to="notifications"
             >
@@ -80,7 +81,7 @@ function Links({ closeNavbar, isAuthenticated }) {
             <h4 className="opacity-50 ">Other Actions</h4>
 
             <NavLink
-              onClick={closeNavbar}
+              
               className="flex items-center py-2 text-lg hover:text-indigo-700"
               to="logout"
             >
@@ -89,46 +90,10 @@ function Links({ closeNavbar, isAuthenticated }) {
             </NavLink>
           </div>
         </>
-      ) : (
-        <>
-          <div className="px-8 py-3">
-            <h4 className="opacity-50 ">Other Actions</h4>
-
-            <NavLink
-              onClick={closeNavbar}
-              className="flex items-center py-2 text-lg hover:text-indigo-700"
-              to="Login"
-            >
-              {({ isActive }) => (
-                <>
-                  <i className="ai ai-arrow-square-in-fill mr-3 text-2xl text-purple-500"></i>
-                  Log in
-                  <i
-                    className={isActive ? "ai ai-arrow-right ml-3" : "hidden"}
-                  ></i>
-                </>
-              )}
-            </NavLink>
-
-            <NavLink
-              onClick={closeNavbar}
-              className="flex items-center py-2 text-lg hover:text-indigo-700"
-              to="Register"
-            >
-              {({ isActive }) => (
-                <>
-                  <i className="ai ai-user-plus-fill mr-3 text-2xl text-blue-500"></i>
-                  Register
-                  <i
-                    className={isActive ? "ai ai-arrow-right ml-3" : "hidden"}
-                  ></i>
-                </>
-              )}
-            </NavLink>
-          </div>
-        </>
-      )}
-    </>
+      
+       
+      
+    
   );
 }
 
@@ -136,31 +101,31 @@ function Links({ closeNavbar, isAuthenticated }) {
 // boy https://static.vecteezy.com/system/resources/previews/019/900/306/non_2x/happy-young-cute-illustration-face-profile-png.png
 // girl https://static.vecteezy.com/system/resources/previews/019/900/348/non_2x/happy-young-cute-illustration-face-profile-png.png
 
-function Sidebar({ open, isAuthenticated }) {
-  const [toggle, setToggle] = useState(open);
-  // console.log("navbar open", open, "navbar toggle", toggle, Math.random());
+function Sidebar() {
+  // const [toggle, setToggle] = useState(open);
+  // // console.log("navbar open", open, "navbar toggle", toggle, Math.random());
 
-  const userName = sessionStorage.getItem("userName");
+  // const userName = sessionStorage.getItem("userName");
 
-  function closeNavbar() {
-    setToggle(!toggle);
-  }
+  // function closeNavbar() {
+  //   setToggle(!toggle);
+  // }
 
-  useEffect(() => {
-    closeNavbar();
-  }, [open]);
+  // useEffect(() => {
+  //   closeNavbar();
+  // }, [open]);
 
   return (
     <nav
       className={
-        toggle
-          ? "animate-slide relative z-10 min-h-svh max-w-80 rounded-3xl bg-white shadow-lg lg:sticky lg:left-0 lg:top-0 lg:animate-none"
-          : "hidden min-h-svh max-w-80 rounded-3xl bg-white shadow-lg lg:sticky lg:left-0 lg:top-0 lg:block"
+      
+           "animate-slide relative z-10 min-h-svh max-w-80 rounded-3xl bg-white shadow-lg lg:sticky lg:left-0 lg:top-0 lg:animate-none"
+          // "hidden min-h-svh max-w-80 rounded-3xl bg-white shadow-lg lg:sticky lg:left-0 lg:top-0 lg:block"
       }
     >
       <button
         className="text-red absolute right-4 top-4 lg:hidden"
-        onClick={closeNavbar}
+        
       >
         <i className="ai ai-x-bold text-2xl"></i>
       </button>
@@ -172,11 +137,11 @@ function Sidebar({ open, isAuthenticated }) {
         />
         <div className="mx-2">
           <h3 className="font-heading text-sm">Welcome,</h3>
-          <h3 className="font-paragraph text-xl">{userName || "Admin"}</h3>
+          <h3 className="font-paragraph text-xl"> Admin</h3>
         </div>
       </div>
       <hr />
-      <Links closeNavbar={closeNavbar} isAuthenticated={isAuthenticated} />
+      <Links />
     </nav>
   );
 }

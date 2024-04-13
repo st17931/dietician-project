@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 
 const Home = () => {
+  const userCount = useSelector((state)=> state.allUser.userArr.length)
   return (
     <>
       <main className="mx-8 my-4 p-2 lg:mx-16">
@@ -12,7 +15,7 @@ const Home = () => {
           <div className="grid grid-cols-2 rounded-lg bg-white px-8 py-8 shadow-md">
             <div className="">
               <h4 className=" text-slate-500">Total Users</h4>
-              <p className="text-3xl font-medium">175</p>
+              <p className="text-3xl font-medium">{userCount}</p>
             </div>
             <div className="my-auto text-center">
               <i className="ai ai-users-three-light text-right text-6xl text-blue-600"></i>
@@ -21,7 +24,7 @@ const Home = () => {
           <div className="grid grid-cols-2 rounded-lg bg-white px-8 py-8 shadow-md">
             <div className="">
               <h4 className=" text-slate-500">Active Users</h4>
-              <p className="text-3xl font-medium">105</p>
+              <p className="text-3xl font-medium">{userCount}</p>
             </div>
             <div className="my-auto text-center">
               <i className="ai ai-users-light text-right text-5xl text-emerald-600"></i>
@@ -30,7 +33,7 @@ const Home = () => {
           <div className="grid grid-cols-2 rounded-lg bg-white px-8 py-8 shadow-md">
             <div className="">
               <h4 className=" text-slate-500">Premium Users</h4>
-              <p className="text-3xl font-medium">75</p>
+              <p className="text-3xl font-medium">{userCount}</p>
             </div>
             <div className="my-auto text-center">
               <i className="ai ai-users-light text-right text-5xl text-amber-500"></i>
@@ -39,7 +42,7 @@ const Home = () => {
           <div className="grid grid-cols-2 rounded-lg bg-white px-8 py-8 shadow-md">
             <div className="">
               <h4 className=" text-slate-500">Expiring Soon</h4>
-              <p className="text-3xl font-medium">25</p>
+              <p className="text-3xl font-medium">{userCount}</p>
             </div>
             <div className="my-auto text-center">
               <i className="ai ai-user-minus-light text-right text-5xl text-red-400"></i>

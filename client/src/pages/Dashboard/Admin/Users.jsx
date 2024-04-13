@@ -1,7 +1,9 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Users = () => {
+  const allUser = useSelector((state) => state.allUser.userArr)
   return (
     <main className="mx-auto my-6 p-10">
       <h1 className="mb-8 text-3xl">
@@ -138,233 +140,56 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <td className="w-4 p-4">
-                <div className="flex items-center">
-                  <input
-                    id="checkbox-table-search-1"
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
-                  />
-                  <label for="checkbox-table-search-1" className="sr-only">
-                    checkbox
-                  </label>
-                </div>
-              </td>
-              <th
-                scope="row"
-                className="flex items-center whitespace-nowrap px-6 py-4 text-gray-900 dark:text-white"
-              >
-                <img
-                  className="h-10 w-10 rounded-full object-cover"
-                  src="https://source.unsplash.com/random/?man"
-                  alt="Jese image"
-                />
-                <div className="ps-3">
-                  <div className="text-base font-semibold">Neil Sims</div>
-                  <div className="font-normal text-gray-500">
-                    neil.sims@fitness.com
+
+
+            {allUser.map((user) => (
+              <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
+                <td className="w-4 p-4">
+                  <div className="flex items-center">
+                    <input
+                      id="checkbox-table-search-1"
+                      type="checkbox"
+                      className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
+                    />
+                    <label for="checkbox-table-search-1" className="sr-only">
+                      checkbox
+                    </label>
                   </div>
-                </div>
-              </th>
-              <td className="px-6 py-4">Premium</td>
-              <td className="px-6 py-4">
-                <div className="flex items-center">
-                  <div className="me-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>{" "}
-                  Active
-                </div>
-              </td>
-              <td className="px-6 py-4">
-                <Link
-                  to="123"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                </td>
+                <th
+                  scope="row"
+                  className="flex items-center whitespace-nowrap px-6 py-4 text-gray-900 dark:text-white"
                 >
-                  Show
-                </Link>
-              </td>
-            </tr>
-            <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <td className="w-4 p-4">
-                <div className="flex items-center">
-                  <input
-                    id="checkbox-table-search-2"
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
+                  <img
+                    className="h-10 w-10 rounded-full object-cover"
+                    src="https://source.unsplash.com/random/?man"
+                    alt="Jese image"
                   />
-                  <label for="checkbox-table-search-2" className="sr-only">
-                    checkbox
-                  </label>
-                </div>
-              </td>
-              <th
-                scope="row"
-                className="flex items-center whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              >
-                <img
-                  className="h-10 w-10 rounded-full object-cover"
-                  src="https://source.unsplash.com/random/?woman"
-                  alt="Jese image"
-                />
-                <div className="ps-3">
-                  <div className="text-base font-semibold">Bonnie Green</div>
-                  <div className="font-normal text-gray-500">
-                    bonnie@fitness.com
+                  <div className="ps-3">
+                    <div className="text-base font-semibold">{`${user.firstName + user.lastName}`}</div>
+                    <div className="font-normal text-gray-500">
+                      {user.email}
+                    </div>
                   </div>
-                </div>
-              </th>
-              <td className="px-6 py-4">Free</td>
-              <td className="px-6 py-4">
-                <div className="flex items-center">
-                  <div className="me-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>{" "}
-                  Active
-                </div>
-              </td>
-              <td className="px-6 py-4">
-                <Link
-                  to="123"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Show
-                </Link>
-              </td>
-            </tr>
-            <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <td className="w-4 p-4">
-                <div className="flex items-center">
-                  <input
-                    id="checkbox-table-search-2"
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
-                  />
-                  <label for="checkbox-table-search-2" className="sr-only">
-                    checkbox
-                  </label>
-                </div>
-              </td>
-              <th
-                scope="row"
-                className="flex items-center whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              >
-                <img
-                  className="h-10 w-10 rounded-full object-cover"
-                  src="https://source.unsplash.com/random/?bodybuilder"
-                  alt="Jese image"
-                />
-                <div className="ps-3">
-                  <div className="text-base font-semibold">Jese Leos</div>
-                  <div className="font-normal text-gray-500">
-                    jese@fitness.com
+                </th>
+                <td className="px-6 py-4">Premium</td>
+                <td className="px-6 py-4">
+                  <div className="flex items-center">
+                    <div className="me-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>{" "}
+                    Active
                   </div>
-                </div>
-              </th>
-              <td className="px-6 py-4">Premium</td>
-              <td className="px-6 py-4">
-                <div className="flex items-center">
-                  <div className="me-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>{" "}
-                  Active
-                </div>
-              </td>
-              <td className="px-6 py-4">
-                <Link
-                  to="123"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Show
-                </Link>
-              </td>
-            </tr>
-            <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <td className="w-4 p-4">
-                <div className="flex items-center">
-                  <input
-                    id="checkbox-table-search-2"
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
-                  />
-                  <label for="checkbox-table-search-2" className="sr-only">
-                    checkbox
-                  </label>
-                </div>
-              </td>
-              <th
-                scope="row"
-                className="flex items-center whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              >
-                <img
-                  className="h-10 w-10 rounded-full object-cover"
-                  src="https://source.unsplash.com/random/?girl"
-                  alt="Jese image"
-                />
-                <div className="ps-3">
-                  <div className="text-base font-semibold">Thomas Lean</div>
-                  <div className="font-normal text-gray-500">
-                    thomes@fitness.com
-                  </div>
-                </div>
-              </th>
-              <td className="px-6 py-4">Premium</td>
-              <td className="px-6 py-4">
-                <div className="flex items-center">
-                  <div className="me-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>{" "}
-                  Active
-                </div>
-              </td>
-              <td className="px-6 py-4">
-                <Link
-                  to="123"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Show
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <td className="w-4 p-4">
-                <div className="flex items-center">
-                  <input
-                    id="checkbox-table-search-3"
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
-                  />
-                  <label for="checkbox-table-search-3" className="sr-only">
-                    checkbox
-                  </label>
-                </div>
-              </td>
-              <th
-                scope="row"
-                className="flex items-center whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              >
-                <img
-                  className="h-10 w-10 rounded-full object-cover"
-                  src="https://source.unsplash.com/random"
-                  alt="Jese image"
-                />
-                <div className="ps-3">
-                  <div className="text-base font-semibold">
-                    Leslie Livingston
-                  </div>
-                  <div className="font-normal text-gray-500">
-                    leslie@fitness.com
-                  </div>
-                </div>
-              </th>
-              <td className="px-6 py-4">Premium</td>
-              <td className="px-6 py-4">
-                <div className="flex items-center">
-                  <div className="me-2 h-2.5 w-2.5 rounded-full bg-red-500"></div>{" "}
-                  Expired
-                </div>
-              </td>
-              <td className="px-6 py-4">
-                <Link
-                  to="123"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Show
-                </Link>
-              </td>
-            </tr>
+                </td>
+                <td className="px-6 py-4">
+                  <Link
+                    to="123"
+                    className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                  >
+                    Show
+                  </Link>
+                </td>
+              </tr>
+            ))}
+
           </tbody>
         </table>
 

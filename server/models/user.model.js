@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema({
     weight:String,
     workHours:String,
     workoutTime:String,
+    isAdmin:{ type:Boolean, default:false}
 })
 
 const Users = mongoose.model('Users', userSchema);
